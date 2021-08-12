@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useRef , useCallback} from "react";
 import _ from "lodash";
 
-import Node from "../Node/Node";
+import Node from "./Node/Node";
 
 import "./NavigateBot.css";
 
@@ -19,9 +19,32 @@ const NavigateBot = () => {
     grid: []              
   });
 
+  const mouseIsPressed=useRef(false);
+
   useEffect(() => {                             //varInUseEffect=null --> []
     const grid1 = getInitialGrid();
     setNodeGrid({ ...nodeGrid, grid: grid1 });
+    window.addEventListener("mouseup",()=>{mouseIsPressed.current=false});
+  }, []);
+
+  const handleMouseDown=useCallback((event,row,col)=>{
+       setNodeGrid((prevGrid)=>({
+         grid: getNewGridwithWallToggled(prevGrid.grid,row,col)
+       }));
+        mouseIsPressed.current=true;
+        event.preventDefault();
+
+  },[]);
+  const handleMouseEnter=useCallback((row,col)=>{
+      if(mouseIsPressed.current===true){   // dragging
+               setNodeGrid((prevGrid)=>({
+                 ...prevGrid,
+                  grid:getNewGridwithWallToggled(prevGrid.grid,row,col)
+               }));
+      }
+  },[]);
+  const handleMouseUp = useCallback(() => {
+    mouseIsPressed.current = false;
   }, []);
 
   const animateDijkstra = (visitedNodesInOrder, nodesInShortestPathOrder) => {       
@@ -66,14 +89,18 @@ const NavigateBot = () => {
         Visualize Dijkstra´s Algorithm
       </button>
       <div className="grid">
-        <h1>SHORTEST TRACK DETECTOR</h1>
+      { console.log(nodeGrid.grid) }
         {nodeGrid.grid.map((row, rowIdx) => {
           return (
             <div className="row"  key={rowIdx}>
               {row.map((node, nodeIdx) => {
-                const {row,col,isStart, isFinish,isVisited } = node;
+                const {row,col,isStart,isWall ,isFinish,isVisited } = node;
                 return (
                   <Node
+                    onMouseDown={handleMouseDown}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseUp={handleMouseUp}
+                    isWall={isWall}
                     row={row}
                     col={col}
                     key={nodeIdx}
@@ -92,8 +119,6 @@ const NavigateBot = () => {
 };
 
 export default NavigateBot;
-
-//----------------------------------------------------------
 
 const getInitialGrid = () => {
   const grid = [];
@@ -128,5 +153,16 @@ const getNewGridWithVisited = (grid, row, col) => {
     isVisited: true
   };
   newGrid[row][col] = newNode;
+  return newGrid;
+};
+
+const getNewGridwithWallToggled=(grid,row,col)=>{
+  const newGrid = [...grid];  
+  const node1 = newGrid[row][col];
+  const newNode = {
+    ...node1,
+    isWall: true  
+  };
+  newGrid[row][col]=newNode;
   return newGrid;
 };
