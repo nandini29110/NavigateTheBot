@@ -85,14 +85,14 @@ const NavigateBot = () => {
   };
   return (
     <div className="pfv">
-      <button onClick={visualizeDijkstra} className="button">
+      <button onClick={visualizeDijkstra} className="button-bot">
         Visualize Dijkstra´s Algorithm
       </button>
-      <div className="grid">
+      <div className="grid-bot">
       { console.log(nodeGrid.grid) }
         {nodeGrid.grid.map((row, rowIdx) => {
           return (
-            <div className="row"  key={rowIdx}>
+            <div className="row-bot"  key={rowIdx}>
               {row.map((node, nodeIdx) => {
                 const {row,col,isStart,isWall ,isFinish,isVisited } = node;
                 return (
