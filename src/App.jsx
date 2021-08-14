@@ -1,11 +1,12 @@
 import React from "react";
 import NavigateBot from "./NavigateBot/NavigateBot";
-import Navbar from "./Navbar";
+import NavbarReact from "./NavbarReact/NavbarReact.jsx";
 
-function App() {
+
+function App(){
   return( 
     <div>
-  <Navbar/>
+  <NavbarReact/>
   <NavigateBot />
   </div>
   );

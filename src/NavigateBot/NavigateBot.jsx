@@ -47,7 +47,8 @@ const NavigateBot = () => {
     mouseIsPressed.current = false;
   }, []);
 
-  const animateDijkstra = (visitedNodesInOrder, nodesInShortestPathOrder) => {       
+  const animateDijkstra = (visitedNodesInOrder, nodesInShortestPathOrder) => {  
+    console.log("Length" + visitedNodesInOrder.length);     
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
         if(i===visitedNodesInOrder.length){
           setTimeout(()=>{
@@ -55,13 +56,15 @@ const NavigateBot = () => {
           },10);
           return;
         }
+        console.log("insideLoop"+i);
       setTimeout(() => {
+        console.log("inside Time Out"+i);
         const node = visitedNodesInOrder[i];
         setNodeGrid((prevNodeGrid) => ({
           ...prevNodeGrid,
           grid: getNewGridWithVisited(prevNodeGrid.grid, node.row, node.col) // calls render
         }));
-      }, 10 );
+      }, 10);
     }
   };
 
@@ -85,14 +88,14 @@ const NavigateBot = () => {
   };
   return (
     <div className="pfv">
-      <button onClick={visualizeDijkstra} className="button">
+      <button onClick={visualizeDijkstra} className="button-bot">
         Visualize Dijkstra´s Algorithm
       </button>
-      <div className="grid">
-      { console.log(nodeGrid.grid) }
+      <div className="grid-bot">
+      {/* { console.log(nodeGrid.grid) } */}
         {nodeGrid.grid.map((row, rowIdx) => {
           return (
-            <div className="row"  key={rowIdx}>
+            <div className="row-bot"  key={rowIdx}>
               {row.map((node, nodeIdx) => {
                 const {row,col,isStart,isWall ,isFinish,isVisited } = node;
                 return (

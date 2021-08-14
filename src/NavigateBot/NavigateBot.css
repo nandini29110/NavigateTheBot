@@ -1,9 +1,9 @@
-.grid {
+.grid-bot {
   margin: 100px 0 0;
   display: block;
 }
 
-.row {
+.row-bot {
   height: 25px;
 }
 
@@ -11,7 +11,7 @@
   text-align: center;
 }
 
-.button {
+.button-bot {
   height: 50px;
   width: 170px;
   background-color: chartreuse;
