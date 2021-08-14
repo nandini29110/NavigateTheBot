@@ -92,11 +92,8 @@ const NavigateBot = () => {
         Visualize Dijkstra´s Algorithm
       </button>
       <div className="grid-bot">
-<<<<<<< HEAD
       {/* { console.log(nodeGrid.grid) } */}
-=======
-      { console.log(nodeGrid.grid) }
->>>>>>> d1b0c5ecdaba8079eaabcf62f7512157a131972b
+
         {nodeGrid.grid.map((row, rowIdx) => {
           return (
             <div className="row-bot"  key={rowIdx}>
