@@ -2,7 +2,7 @@ import React, { useState, useEffect ,useRef , useCallback} from "react";
 import _ from "lodash";
 
 import Node from "./Node/Node";
-
+import NavbarReact from "../NavbarReact/NavbarReact";
 import "./NavigateBot.css";
 
 import { dijkstra, getNodesInShortestPathOrder } from "../algorithms/dijkstras";
@@ -11,8 +11,8 @@ const START_NODE_ROW = 5;
 const START_NODE_COL = 5;
 const FINISH_NODE_ROW = 8;
 const FINISH_NODE_COL = 22;
-const TOTAL_ROWS = 25;
-const TOTAL_COLS = 40;
+const TOTAL_ROWS = 18;
+const TOTAL_COLS = 54;
 
 const NavigateBot = () => {
   const [nodeGrid, setNodeGrid] = useState({
@@ -86,14 +86,11 @@ const NavigateBot = () => {
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
     animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);   
   };
+  //pfv
   return (
-    <div className="pfv">
-      <button onClick={visualizeDijkstra} className="button-bot">
-        Visualize Dijkstra´s Algorithm
-      </button>
+    <div>                                                
+     <NavbarReact visualizeDijkstra={visualizeDijkstra}/>
       <div className="grid-bot">
-      {/* { console.log(nodeGrid.grid) } */}
-
         {nodeGrid.grid.map((row, rowIdx) => {
           return (
             <div className="row-bot"  key={rowIdx}>
