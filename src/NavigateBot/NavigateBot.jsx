@@ -86,10 +86,52 @@ const NavigateBot = () => {
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
     animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);   
   };
+
+  const clearWall=()=>{
+    const newGrid = [...nodeGrid.grid];  
+    for(let row=0;row<TOTAL_ROWS;row++){
+      for(let col=0;col<TOTAL_COLS;col++){
+        
+        const node1 = newGrid[row][col];
+        const newNode = {
+          ...node1,
+          isWall: false ,
+          isVisited: false
+        };
+        newGrid[row][col]=newNode;
+      }
+    }
+    setNodeGrid((prevNodeGrid) => ({
+      ...prevNodeGrid,
+      grid: newGrid
+    }));  
+  }
+  const clearPath=()=>{
+    const newGrid = [...nodeGrid.grid];  
+    for(let row=0;row<TOTAL_ROWS;row++){
+      for(let col=0;col<TOTAL_COLS;col++){
+          const node1 = newGrid[row][col];
+        const newNode = {
+          ...node1,
+          isVisited: false 
+        };
+        newGrid[row][col]=newNode;
+      }
+    }
+    setNodeGrid((prevNodeGrid) => ({
+      ...prevNodeGrid,
+      grid: newGrid
+    }));  
+  }
+
+  const clearBoard=()=>{
+    window.location.reload(false);
+  };
+
   //pfv
   return (
     <div>                                                
-     <NavbarReact visualizeDijkstra={visualizeDijkstra}/>
+     <NavbarReact visualizeDijkstra={visualizeDijkstra} clearWall={clearWall} clearPath={clearPath} clearBoard={clearBoard} />
       <div className="grid-bot">
         {nodeGrid.grid.map((row, rowIdx) => {
           return (

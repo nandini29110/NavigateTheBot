@@ -38,17 +38,16 @@ function NavbarReact(props){
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto" onSelect={handleSelect}>
-                
             <NavDropdown title={<span className="text-white">Algorithms</span>} className="basic-nav-dropdown nav-items-style">
-                <NavDropdown.Item eventKey="dijkstra" >Dijkstra's Algorithm</NavDropdown.Item>
-                <NavDropdown.Item eventKey="astar" >Astar algo</NavDropdown.Item>
+                <NavDropdown.Item eventKey="dijkstra">Dijkstra's Algorithm</NavDropdown.Item>
+                <NavDropdown.Item eventKey="astar">Astar algo</NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="#speed" className="text-white nav-items-style">Speed</Nav.Link>
               <script type="text/javascript" src="../NavigateBot/NavigateBot.jsx"></script>
               <button id="navigateUsingAlgo"  className="navigate-button" onClick={ ()=> algorithm==="dijkstra" ? `${props.visualizeDijkstra()}`:null} >Select Algorithm</button>
-              <Nav.Link href="#clear-board" className="text-white nav-items-style">CLEAR BOARD</Nav.Link>
-              <Nav.Link href="#clear-path" className="text-white nav-items-style">CLEAR PATH</Nav.Link>
-              <Nav.Link href="#clear-walls" className="text-white nav-items-style">CLEAR WALLS</Nav.Link>
+              <Nav.Link onClick={props.clearBoard} className="text-white nav-items-style">CLEAR BOARD</Nav.Link>
+              <Nav.Link onClick={props.clearPath} className="text-white nav-items-style">CLEAR PATH</Nav.Link>
+              <Nav.Link onClick={props.clearWall} className="text-white nav-items-style">CLEAR WALLS</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
