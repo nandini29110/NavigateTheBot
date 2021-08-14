@@ -3,13 +3,15 @@ import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
 import "./NavbarReact.css"
 import Logo from "../images/bot.png";
 import LogoText from "../images/logo-text.png";
+import NavigateBot from "../NavigateBot/NavigateBot";
 
 function NavbarReact(props){
   const [algorithm,setAlgorithm]=useState("");
   const handleSelect = (eventKey) =>{
     if(eventKey==="dijkstra"){
+      document.getElementById("navigateUsingAlgo").innerHTML="Visualize Dijkstra";
+      document.getElementById("navigateUsingAlgo").className="navigate-button visualizeColor";
       setAlgorithm("dijkstra");
-      document.getElementById("navigateUsingAlgo").innerHTML="Navigate using Dijkstra";
     }
   } 
     return(
@@ -37,16 +39,16 @@ function NavbarReact(props){
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto" onSelect={handleSelect}>
                 
-            <NavDropdown title={<span className="text-white">Algorithms</span>} className="basic-nav-dropdown left-link-items-style">
+            <NavDropdown title={<span className="text-white">Algorithms</span>} className="basic-nav-dropdown nav-items-style">
                 <NavDropdown.Item eventKey="dijkstra" >Dijkstra's Algorithm</NavDropdown.Item>
                 <NavDropdown.Item eventKey="astar" >Astar algo</NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="#speed" className="text-white left-link-items-style">Speed</Nav.Link>
+              <Nav.Link href="#speed" className="text-white nav-items-style">Speed</Nav.Link>
               <script type="text/javascript" src="../NavigateBot/NavigateBot.jsx"></script>
-              <button  id="navigateUsingAlgo" className="navigate-button" onClick={ ()=> algorithm==="dijkstra" ? `${props.visualizeDijkstra()}`:null} >Let's Navigate</button>
-              <Nav.Link href="#clear-board" className="text-white">CLEAR BOARD</Nav.Link>
-              <Nav.Link href="#clear-path" className="text-white">CLEAR PATH</Nav.Link>
-              <Nav.Link href="#clear-walls" className="text-white">CLEAR WALLS</Nav.Link>
+              <button id="navigateUsingAlgo"  className="navigate-button" onClick={ ()=> algorithm==="dijkstra" ? `${props.visualizeDijkstra()}`:null} >Select Algorithm</button>
+              <Nav.Link href="#clear-board" className="text-white nav-items-style">CLEAR BOARD</Nav.Link>
+              <Nav.Link href="#clear-path" className="text-white nav-items-style">CLEAR PATH</Nav.Link>
+              <Nav.Link href="#clear-walls" className="text-white nav-items-style">CLEAR WALLS</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -61,3 +63,6 @@ function NavbarReact(props){
 }
 
 export default NavbarReact;
+
+
+// https://www.linkpicture.com/q/Navigate-Bot-_1.svg"

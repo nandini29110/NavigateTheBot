@@ -1,7 +1,7 @@
-.navbar-custom-color {
-  background-color: #da0037;
+.navbar-custom-color{
+  background-color: #DA0037;
 }
-navbar-logo-text {
+navbar-logo-text{
   font-family: "";
 }
 .navigate-button {
@@ -21,28 +21,59 @@ navbar-logo-text {
   text-align: center;
   margin-right: 3rem;
   margin-left: 3rem;
-}
-.navbar-text {
-  font-family: "Montserrat", sans-serif;
+  width:12rem;
 }
 
-.left-link-items-style {
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
+@-webkit-keyframes glowing {
+  0% { background-color: #368b85; -webkit-box-shadow: 0 0 3px #368b85; }
+  50% { background-color: #368b85; -webkit-box-shadow: 0 0 40px #368b85; }
+  100% { background-color: #368b85; -webkit-box-shadow: 0 0 3px #368b85; }
 }
 
-.right-link-items-style {
+@-moz-keyframes glowing {
+  0% { background-color: #368b85; -moz-box-shadow: 0 0 3px #368b85; }
+  50% { background-color: #368b85; -moz-box-shadow: 0 0 40px #368b85; }
+  100% { background-color: #368b85; -moz-box-shadow: 0 0 3px #368b85; }
 }
 
-.logo-photo {
-  margin-right: 10px;
+@-o-keyframes glowing {
+  0% { background-color: #368b85; box-shadow: 0 0 3px #368b85; }
+  50% { background-color: #368b85; box-shadow: 0 0 40px #368b85; }
+  100% { background-color: #368b85; box-shadow: 0 0 3px #368b85; }
 }
 
-.logo-text {
+@keyframes glowing {
+  0% { background-color: #368b85; box-shadow: 0 0 3px #368b85; }
+  50% { background-color: #368b85; box-shadow: 0 0 40px #368b85; }
+  100% { background-color: #368b85; box-shadow: 0 0 3px #368b85; }
+}
+
+.navbar-text{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.nav-items-style{
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.logo-photo{
+  margin-right: 0.5rem;
+}
+
+.logo-text{
   margin-top: 3px;
 }
 
-.navbar-padding-corrected {
+.navbar-padding-corrected{
   padding-bottom: 3px;
   padding-top: 3px;
+}
+
+.visualizeColor{
+  background-color: #368b85;
+  -webkit-animation: glowing 1500ms infinite;
+-moz-animation: glowing 1500ms infinite;
+-o-animation: glowing 1500ms infinite;
+animation: glowing 1500ms infinite;
 }
