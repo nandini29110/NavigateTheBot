@@ -92,7 +92,7 @@ const NavigateBot = () => {
      for(let i=0;i<nodesInShortestPathOrder.length;i++){
        setTimeout(() => {
         const node=nodesInShortestPathOrder[i];
-          document.getElementById(`node-${node.row}-${node.col}`).className="node shortest-path";
+          document.getElementById(`node-${node.row}-${node.col}`).className="node node-shortest-path";
        }, i*100);
      }
   };

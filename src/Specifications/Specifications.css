@@ -26,3 +26,7 @@
 .node-wall {
   background-color: #368b85;
 }
+
+.node-shortest-path {
+  background-color: yellow;
+}
