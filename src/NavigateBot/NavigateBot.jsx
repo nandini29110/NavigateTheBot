@@ -11,7 +11,7 @@ import { dijkstra, getNodesInShortestPathOrder } from "../algorithms/dijkstras";
 const START_NODE_ROW = 5;
 const START_NODE_COL = 5;
 const FINISH_NODE_ROW = 11;
-const FINISH_NODE_COL = 44;
+const FINISH_NODE_COL = 25;
 const TOTAL_ROWS = 18;
 const TOTAL_COLS = 54;
 
