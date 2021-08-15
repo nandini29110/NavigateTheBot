@@ -3,14 +3,15 @@ import _ from "lodash";
 
 import Node from "./Node/Node";
 import NavbarReact from "../NavbarReact/NavbarReact";
+import Specifications from "../Specifications/Specifications.jsx";
 import "./NavigateBot.css";
 
 import { dijkstra, getNodesInShortestPathOrder } from "../algorithms/dijkstras";
 
 const START_NODE_ROW = 5;
 const START_NODE_COL = 5;
-const FINISH_NODE_ROW = 8;
-const FINISH_NODE_COL = 22;
+const FINISH_NODE_ROW = 11;
+const FINISH_NODE_COL = 44;
 const TOTAL_ROWS = 18;
 const TOTAL_COLS = 54;
 
@@ -28,7 +29,7 @@ const NavigateBot = () => {
   }, []);
 
   const handleMouseDown=useCallback((event,row,col)=>{
-       setNodeGrid((prevGrid)=>({
+    setNodeGrid((prevGrid)=>({
          grid: getNewGridwithWallToggled(prevGrid.grid,row,col)
        }));
         mouseIsPressed.current=true;
@@ -47,13 +48,32 @@ const NavigateBot = () => {
     mouseIsPressed.current = false;
   }, []);
 
+  // const handleMouseUp=useCallBack((row, col)=> {
+  //   if (!this.state.isRunning) {
+  //     this.setState({mouseIsPressed: false});
+  //     if (this.state.isStartNode) {
+  //       console.log("Start changes");
+  //       const isStartNode = !this.state.isStartNode;
+  //       this.setState({isStartNode, START_NODE_ROW: row, START_NODE_COL: col});
+  //     } else if (this.state.isFinishNode) {
+  //       const isFinishNode = !this.state.isFinishNode;
+  //       this.setState({
+  //         isFinishNode,
+  //         FINISH_NODE_ROW: row,
+  //         FINISH_NODE_COL: col,
+  //       });
+  //     }
+  //     this.getInitialGrid();
+  //   }
+  // }
+  // ,[]);
   const animateDijkstra = (visitedNodesInOrder, nodesInShortestPathOrder) => {  
     console.log("Length" + visitedNodesInOrder.length);     
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
         if(i===visitedNodesInOrder.length){
           setTimeout(()=>{
                animatedShortestPath(nodesInShortestPathOrder);  
-          },10);
+          },5);
           return;
         }
         console.log("insideLoop"+i);
@@ -64,7 +84,7 @@ const NavigateBot = () => {
           ...prevNodeGrid,
           grid: getNewGridWithVisited(prevNodeGrid.grid, node.row, node.col) // calls render
         }));
-      }, 10);
+      },5);
     }
   };
 
@@ -132,6 +152,7 @@ const NavigateBot = () => {
   return (
     <div>                                                
      <NavbarReact visualizeDijkstra={visualizeDijkstra} clearWall={clearWall} clearPath={clearPath} clearBoard={clearBoard} />
+     <Specifications/>
       <div className="grid-bot">
         {nodeGrid.grid.map((row, rowIdx) => {
           return (

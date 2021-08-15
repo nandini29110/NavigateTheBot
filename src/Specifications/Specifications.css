@@ -1,0 +1,28 @@
+.node {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #a2dbfa;
+  display: inline-block;
+}
+
+.node-block {
+  display: inline-block;
+}
+
+.node-finish {
+  background-color: red;
+}
+
+.node-start {
+  background-color: rgb(15, 128, 0);
+}
+
+.alig {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.node-wall {
+  background-color: #368b85;
+}

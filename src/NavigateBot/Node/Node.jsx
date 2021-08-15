@@ -17,7 +17,9 @@ const Node = React.memo(
        onMouseDown={e => onMouseDown(e, row, col)}
       onMouseEnter={() => onMouseEnter(row, col)}
       onMouseUp={() => onMouseUp()}
-      ></div>
+      >
+        
+      </div>
      
     );
   }
