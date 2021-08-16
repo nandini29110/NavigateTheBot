@@ -6,11 +6,15 @@
 }
 
 .node-finish {
-  background-color: red;
+  background-image: url(../../images/house.png);
+  background-position: center;
+  background-size: cover;
 }
 
 .node-start {
-  background-color: rgb(15, 128, 0);
+  background-image: url(../../images/bot.png);
+    background-position: center;
+    background-size: cover;
 }
 
 .node-visited {
