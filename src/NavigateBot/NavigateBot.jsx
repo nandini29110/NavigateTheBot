@@ -215,7 +215,7 @@ const getNewGridWithVisited = (grid, row, col) => {
   const node1 = newGrid[row][col];
   const newNode = {
     ...node1,
-    isVisited: true
+    isVisited: !node1.isVisited
   };
   newGrid[row][col] = newNode;
   return newGrid;
@@ -226,7 +226,7 @@ const getNewGridwithWallToggled=(grid,row,col)=>{
   const node1 = newGrid[row][col];
   const newNode = {
     ...node1,
-    isWall: true  
+    isWall: !node1.isWall
   };
   newGrid[row][col]=newNode;
   return newGrid;
