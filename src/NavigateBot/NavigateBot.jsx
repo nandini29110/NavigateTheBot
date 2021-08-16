@@ -8,10 +8,10 @@ import "./NavigateBot.css";
 
 import { dijkstra, getNodesInShortestPathOrder } from "../algorithms/dijkstras";
 
-const START_NODE_ROW = 5;
-const START_NODE_COL = 5;
-const FINISH_NODE_ROW = 11;
-const FINISH_NODE_COL = 25;
+let START_NODE_ROW = 5;
+let START_NODE_COL = 5;
+let FINISH_NODE_ROW = 11;
+let FINISH_NODE_COL = 25;
 const TOTAL_ROWS = 18;
 const TOTAL_COLS = 54;
 
@@ -21,6 +21,7 @@ const NavigateBot = () => {
   });
 
   const mouseIsPressed=useRef(false);
+  const specialNode=useRef("");
 
   useEffect(() => {                             //varInUseEffect=null --> []
     const grid1 = getInitialGrid();
@@ -33,40 +34,40 @@ const NavigateBot = () => {
          grid: getNewGridwithWallToggled(prevGrid.grid,row,col)
        }));
         mouseIsPressed.current=true;
+        if(row===START_NODE_ROW && col===START_NODE_COL){
+          specialNode.current="START NODE";
+        }else if(row===FINISH_NODE_ROW && col===FINISH_NODE_COL){
+          specialNode.current="FINISH NODE";
+        }else{
+          specialNode.current="WALL NODE";
+        }
         event.preventDefault();
 
   },[]);
   const handleMouseEnter=useCallback((row,col)=>{
-      if(mouseIsPressed.current===true){   // dragging
-               setNodeGrid((prevGrid)=>({
+      // alert("mouse enter the node at row:" + row +" and col : "+ col);
+      if(mouseIsPressed.current===true){ 
+        if( specialNode.current==="START NODE"){
+          START_NODE_ROW=row;
+          START_NODE_COL=col;
+          const grid2 = getInitialGrid();
+          setNodeGrid({ ...nodeGrid, grid: grid2 });
+        }else if(specialNode.current==="FINISH NODE"){
+          FINISH_NODE_COL=col;
+      FINISH_NODE_ROW=row;
+      const grid2 = getInitialGrid();
+      setNodeGrid({ ...nodeGrid, grid: grid2 });
+        }else{
+              setNodeGrid((prevGrid)=>({
                  ...prevGrid,
                   grid:getNewGridwithWallToggled(prevGrid.grid,row,col)
                }));
+        }
       }
   },[]);
   const handleMouseUp = useCallback(() => {
     mouseIsPressed.current = false;
   }, []);
-
-  // const handleMouseUp=useCallBack((row, col)=> {
-  //   if (!this.state.isRunning) {
-  //     this.setState({mouseIsPressed: false});
-  //     if (this.state.isStartNode) {
-  //       console.log("Start changes");
-  //       const isStartNode = !this.state.isStartNode;
-  //       this.setState({isStartNode, START_NODE_ROW: row, START_NODE_COL: col});
-  //     } else if (this.state.isFinishNode) {
-  //       const isFinishNode = !this.state.isFinishNode;
-  //       this.setState({
-  //         isFinishNode,
-  //         FINISH_NODE_ROW: row,
-  //         FINISH_NODE_COL: col,
-  //       });
-  //     }
-  //     this.getInitialGrid();
-  //   }
-  // }
-  // ,[]);
   const animateDijkstra = (visitedNodesInOrder, nodesInShortestPathOrder) => {  
     console.log("Length" + visitedNodesInOrder.length);     
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
@@ -147,7 +148,7 @@ const NavigateBot = () => {
   const clearBoard=()=>{
     window.location.reload(false);
   };
-
+  
   //pfv
   return (
     <div>                                                
